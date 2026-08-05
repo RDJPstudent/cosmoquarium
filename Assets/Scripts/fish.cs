@@ -20,6 +20,10 @@ public class Fish : MonoBehaviour
     public float flipDuration = 0.15f;   // how long the whole turn-flip animation takes
     public float squashAmount = 0.4f;    // how thin (width-wise) the fish gets at the peak of the turn
 
+    [Header("Health")]
+    public int maxHP = 2;                // total hit points before this fish dies
+    protected int currentHP;             // current hit points, set to maxHP on spawn
+
     protected Rigidbody2D rb;
     protected Vector2 targetDirection;   // the direction this pulse is moving toward (world space, already tilt-clamped)
     protected PulseState currentState;
@@ -43,6 +47,8 @@ public class Fish : MonoBehaviour
 
         // Start facing whichever way the fish's initial scale suggests
         isFacingRight = transform.localScale.x >= 0f;
+
+        currentHP = maxHP;
     }
 
     protected virtual void Start()
@@ -185,8 +191,6 @@ public class Fish : MonoBehaviour
 
     // Animates a quick horizontal squash while the fish turns, and swaps the x-sign
     // (actual left/right flip) at the peak of the squash, when the fish is thinnest.
-    // Squashing the SAME axis that flips (x) keeps the motion reading as a horizontal turn,
-    // rather than squashing y which would read as an unrelated vertical flip.
     protected virtual void UpdateTurnFlip()
     {
         flipTimer += Time.deltaTime;
@@ -230,6 +234,8 @@ public class Fish : MonoBehaviour
     // Called automatically by Unity when this fish's collider hits another collider
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        DevTools.LogCollision(gameObject, collision.gameObject);
+
         if (collision.gameObject.name.Contains("Wall"))
         {
             // Use the collision's contact normal to reflect the direction properly,
@@ -240,9 +246,31 @@ public class Fish : MonoBehaviour
             // Clamp the bounce direction too, so wall bounces still respect the tilt limit
             targetDirection = ClampToHorizontalTilt(reflectedDirection);
 
-            // Immediately restart the pulse cycle in the new (bounced) direction,
-            // so the fish visibly turns/tilts to face it and pulses away from the wall
+            // Immediately restart the pulse cycle in the new (bounced) direction
             EnterState(PulseState.Pulsing);
         }
+    }
+
+    // attacker is optional (defaults to null) so anything can still call TakeDamage(amount)
+    // without needing to know about this parameter - Alien passes itself in for clearer logs.
+    // Returns true if this damage killed the fish, false if it survived.
+    public virtual bool TakeDamage(int amount, GameObject attacker = null)
+    {
+        currentHP -= amount;
+        DevTools.LogDamage(attacker != null ? attacker : gameObject, gameObject, amount, currentHP);
+
+        if (currentHP <= 0)
+        {
+            Die();
+            return true;
+        }
+        return false;
+    }
+
+    // Handles fish death - override in a subclass for death effects (particles, sound, score, etc.)
+    protected virtual void Die()
+    {
+        DevTools.LogDeath(gameObject);
+        Destroy(gameObject);
     }
 }
