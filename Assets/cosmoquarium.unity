@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7073f2255809b43a0a6bb1b3114563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevToolsSettings
-  logCollisions: 1
+  logCollisions: 0
   logDamage: 1
   logDeath: 1
   logEatAttempts: 1
@@ -1014,7 +1014,7 @@ MonoBehaviour:
   seekStrength: 0.7
   clumsyNoise: 0
   eatCooldown: 2
-  eatChancePercent: 100
+  eatChancePercent: 38.3
   damagePerAttack: 1
   targetCheckInterval: 1
 --- !u!212 &1129831368
