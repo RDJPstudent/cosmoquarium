@@ -99,12 +99,12 @@ public class Alien : Fish
         // FindObjectsByType grabs every active Fish-derived component in the scene, including Alien itself
         Fish[] allFish = FindObjectsByType<Fish>(FindObjectsSortMode.None);
 
-        // Build a list of valid targets: exclude self, and exclude other Aliens (aliens shouldn't eat each other)
+        // Build a list of valid targets: exclude self, and exclude any predator-flagged fish
         List<Fish> validTargets = new List<Fish>();
         foreach (Fish fish in allFish)
         {
             if (fish == this) continue;
-            if (fish is Alien) continue;
+            if (fish.isPredator) continue;
             validTargets.Add(fish);
         }
 

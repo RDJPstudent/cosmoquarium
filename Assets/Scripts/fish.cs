@@ -6,6 +6,9 @@ public class Fish : MonoBehaviour
     // The three phases of one "pulse cycle"
     protected enum PulseState { Pulsing, Decelerating, Resting }
 
+    [Header("Faction")]
+    public bool isPredator = false; // true for Alien/Bug/Mother (any hunter) - predators exclude each other as targets
+
     [Header("Pulse Movement")]
     public float pulseSpeed = 4f;        // top speed reached at the end of the pulse burst
     public float pulseDuration = 0.5f;   // time spent accelerating forward
@@ -45,7 +48,6 @@ public class Fish : MonoBehaviour
         baseScaleX = Mathf.Abs(transform.localScale.x);
         baseScaleY = Mathf.Abs(transform.localScale.y);
 
-        // Start facing whichever way the fish's initial scale suggests
         isFacingRight = transform.localScale.x >= 0f;
 
         currentHP = maxHP;
@@ -54,14 +56,13 @@ public class Fish : MonoBehaviour
     protected virtual void Start()
     {
         PickNewDirection();
-        EnterState(PulseState.Pulsing); // start the cycle immediately
+        EnterState(PulseState.Pulsing);
     }
 
     protected virtual void Update()
     {
         stateTimer += Time.deltaTime;
 
-        // Check whether it's time to move to the next phase of the pulse cycle
         switch (currentState)
         {
             case PulseState.Pulsing:
@@ -92,52 +93,38 @@ public class Fish : MonoBehaviour
         {
             case PulseState.Pulsing:
                 {
-                    // 0 -> 1 progress through the pulse duration
                     float t = stateTimer / pulseDuration;
-
-                    // Ease-out curve: fast initial acceleration that tapers off,
-                    // feels more like a muscle-powered burst than a linear ramp
                     float easedT = 1f - Mathf.Pow(1f - t, 2f);
-
                     rb.linearVelocity = targetDirection * (pulseSpeed * easedT);
                     break;
                 }
 
             case PulseState.Decelerating:
                 {
-                    // 0 -> 1 progress through the deceleration duration
                     float t = stateTimer / decelDuration;
-
-                    // Lerp speed down from pulseSpeed to 0 over the decel window
                     float currentSpeed = Mathf.Lerp(pulseSpeed, 0f, t);
-
                     rb.linearVelocity = targetDirection * currentSpeed;
                     break;
                 }
 
             case PulseState.Resting:
-                // Fully stopped while waiting for the next pulse
                 rb.linearVelocity = Vector2.zero;
                 break;
         }
     }
 
-    // Switches state and resets the timer - centralizes state transitions in one place
     protected virtual void EnterState(PulseState newState)
     {
         currentState = newState;
         stateTimer = 0f;
     }
 
-    // Picks a new random direction for the next pulse, clamped to the allowed tilt range
     protected virtual void PickNewDirection()
     {
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         targetDirection = ClampToHorizontalTilt(randomDirection);
     }
 
-    // Clamps a direction so it never tilts more than maxTiltAngle away from
-    // whichever horizontal baseline (right = 0 degrees, left = 180 degrees) it's closer to.
     protected virtual Vector2 ClampToHorizontalTilt(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -145,7 +132,6 @@ public class Fish : MonoBehaviour
         bool facingRight = direction.x >= 0f;
         float reference = facingRight ? 0f : 180f;
 
-        // DeltaAngle safely handles the -180/180 wraparound
         float deviation = Mathf.DeltaAngle(reference, angle);
         deviation = Mathf.Clamp(deviation, -maxTiltAngle, maxTiltAngle);
 
@@ -155,9 +141,6 @@ public class Fish : MonoBehaviour
         return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
     }
 
-    // Handles facing direction using two independent mechanisms:
-    // 1. A squash-and-swap turn animation for left/right facing (see UpdateTurnFlip below)
-    // 2. Z-axis rotation ONLY for the tilt (max +/- maxTiltAngle) - never a full rotation
     protected virtual void FaceMovementDirection()
     {
         if (targetDirection.sqrMagnitude < 0.0001f)
@@ -165,8 +148,6 @@ public class Fish : MonoBehaviour
 
         bool desiredFacingRight = targetDirection.x >= 0f;
 
-        // If the desired facing differs from our current settled facing, and we're not
-        // already mid-turn, kick off a new flip animation
         if (desiredFacingRight != isFacingRight && !isFlipping)
         {
             isFlipping = true;
@@ -180,7 +161,6 @@ public class Fish : MonoBehaviour
             UpdateTurnFlip();
         }
 
-        // Tilt rotation - independent of the flip animation, always tracks the live target direction
         float rawAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         float reference = desiredFacingRight ? 0f : 180f;
         float deviation = Mathf.Clamp(Mathf.DeltaAngle(reference, rawAngle), -maxTiltAngle, maxTiltAngle);
@@ -189,14 +169,11 @@ public class Fish : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    // Animates a quick horizontal squash while the fish turns, and swaps the x-sign
-    // (actual left/right flip) at the peak of the squash, when the fish is thinnest.
     protected virtual void UpdateTurnFlip()
     {
         flipTimer += Time.deltaTime;
         float t = Mathf.Clamp01(flipTimer / flipDuration);
 
-        // Triangle wave: rises from 0 to 1 at the midpoint, then back down to 0 - peak squash at t = 0.5
         float squashT = 1f - Mathf.Abs((t * 2f) - 1f);
         float widthMultiplier = Mathf.Lerp(1f, squashAmount, squashT);
 
@@ -204,13 +181,10 @@ public class Fish : MonoBehaviour
 
         float unsignedX = baseScaleX * widthMultiplier;
 
-        // Before the swap point, shrink toward zero using the OLD facing sign.
-        // After the swap point, grow back out using the NEW facing sign.
         bool sideToUse = hasSwappedThisFlip ? pendingFacingRight : isFacingRight;
         scale.x = sideToUse ? unsignedX : -unsignedX;
-        scale.y = baseScaleY; // y stays untouched - no vertical squash at all
+        scale.y = baseScaleY;
 
-        // Swap the actual facing direction once, right at the point of maximum squash
         if (!hasSwappedThisFlip && t >= 0.5f)
         {
             hasSwappedThisFlip = true;
@@ -218,7 +192,6 @@ public class Fish : MonoBehaviour
 
         transform.localScale = scale;
 
-        // Flip animation complete - snap cleanly back to full proportions
         if (t >= 1f)
         {
             isFlipping = false;
@@ -231,29 +204,21 @@ public class Fish : MonoBehaviour
         }
     }
 
-    // Called automatically by Unity when this fish's collider hits another collider
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         DevTools.LogCollision(gameObject, collision.gameObject);
 
         if (collision.gameObject.name.Contains("Wall"))
         {
-            // Use the collision's contact normal to reflect the direction properly,
-            // like a ball bouncing off a surface, rather than picking something random
             Vector2 wallNormal = collision.GetContact(0).normal;
             Vector2 reflectedDirection = Vector2.Reflect(targetDirection, wallNormal).normalized;
 
-            // Clamp the bounce direction too, so wall bounces still respect the tilt limit
             targetDirection = ClampToHorizontalTilt(reflectedDirection);
 
-            // Immediately restart the pulse cycle in the new (bounced) direction
             EnterState(PulseState.Pulsing);
         }
     }
 
-    // attacker is optional (defaults to null) so anything can still call TakeDamage(amount)
-    // without needing to know about this parameter - Alien passes itself in for clearer logs.
-    // Returns true if this damage killed the fish, false if it survived.
     public virtual bool TakeDamage(int amount, GameObject attacker = null)
     {
         currentHP -= amount;
@@ -267,7 +232,6 @@ public class Fish : MonoBehaviour
         return false;
     }
 
-    // Handles fish death - override in a subclass for death effects (particles, sound, score, etc.)
     protected virtual void Die()
     {
         DevTools.LogDeath(gameObject);
