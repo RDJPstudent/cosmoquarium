@@ -324,13 +324,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OnDisplayModeSelected
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1113,13 +1113,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OnResolutionSelected
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1373,13 +1373,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: ApplyDisplaySettings
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1731,13 +1731,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: QuitGame
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1869,7 +1869,7 @@ GameObject:
   - component: {fileID: 7254404730743499683}
   - component: {fileID: 6689795934894455640}
   - component: {fileID: 7892502921168445367}
-  - component: {fileID: 5127531350936712094}
+  - component: {fileID: 1154266621097525558}
   m_Layer: 0
   m_Name: MainMenuUI
   m_TagString: Untagged
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5127531350936712094
+--- !u!114 &1154266621097525558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1970,9 +1970,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4507770724974222871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc3c8b2aa0ad5f4a9cc1acf647e1499, type: 3}
+  m_Script: {fileID: 11500000, guid: 903a058f01e0a2940abef3e54ede1a5f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cosmoquarium.UI.MainMenu.MainMenuController
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
+  gameSceneName: SampleScene
   mainPanel: {fileID: 4323135296179320858}
   settingsPanel: {fileID: 6784511302414976954}
   resolutionDropdown: {fileID: 4884460703157517623}
@@ -2098,13 +2099,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OpenSettings
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2385,13 +2386,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: CloseSettings
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2672,13 +2673,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5127531350936712094}
-        m_TargetAssemblyTypeName: Cosmoquarium.UI.MainMenu.MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 1154266621097525558}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
