@@ -77,6 +77,45 @@ public class MainMenuController : MonoBehaviour
         ShowMainPanel();
     }
 
+    public void OnResolutionSelected(int index)
+{
+    if (resolutionDropdown == null || availableResolutions.Count == 0)
+    {
+        return;
+    }
+
+    int clampedIndex = Mathf.Clamp(index, 0, availableResolutions.Count - 1);
+
+    if (resolutionDropdown.value != clampedIndex)
+    {
+        resolutionDropdown.SetValueWithoutNotify(clampedIndex);
+    }
+
+    resolutionDropdown.RefreshShownValue();
+}
+
+public void OnDisplayModeSelected(int index)
+{
+    if (displayModeDropdown == null)
+    {
+        return;
+    }
+
+    int clampedIndex = Mathf.Clamp(index, 0, 2);
+
+    if (displayModeDropdown.value != clampedIndex)
+    {
+        displayModeDropdown.SetValueWithoutNotify(clampedIndex);
+    }
+
+    displayModeDropdown.RefreshShownValue();
+}
+
+public void ApplyDisplaySettings()
+{
+    ApplySettings();
+}
+
     public void ApplySettings()
     {
         if (availableResolutions.Count == 0)
