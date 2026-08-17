@@ -7,7 +7,11 @@ public class Fish : MonoBehaviour
     protected enum PulseState { Pulsing, Decelerating, Resting }
 
     [Header("Faction")]
-    public bool isPredator = false; // true for Alien/Bug/Mother (any hunter) - predators exclude each other as targets
+    public bool isPredator = false; // true for Alien/Bug/Mother/Burster (any hunter) - predators exclude each other as targets
+    public bool hasUpgrade = false; // true once this fish has collected an upgrade - limits fish to holding 1 at a time
+
+    [Header("Spawn Economy")]
+    public float spawnValue = 10f; // how much of the night's spawn budget this predator "costs" - set per prefab in the Inspector
 
     [Header("Pulse Movement")]
     public float pulseSpeed = 4f;        // top speed reached at the end of the pulse burst
@@ -48,6 +52,7 @@ public class Fish : MonoBehaviour
         baseScaleX = Mathf.Abs(transform.localScale.x);
         baseScaleY = Mathf.Abs(transform.localScale.y);
 
+        // Start facing whichever way the fish's initial scale suggests
         isFacingRight = transform.localScale.x >= 0f;
 
         currentHP = maxHP;
@@ -56,13 +61,14 @@ public class Fish : MonoBehaviour
     protected virtual void Start()
     {
         PickNewDirection();
-        EnterState(PulseState.Pulsing);
+        EnterState(PulseState.Pulsing); // start the cycle immediately
     }
 
     protected virtual void Update()
     {
         stateTimer += Time.deltaTime;
 
+        // Check whether it's time to move to the next phase of the pulse cycle
         switch (currentState)
         {
             case PulseState.Pulsing:
@@ -236,5 +242,16 @@ public class Fish : MonoBehaviour
     {
         DevTools.LogDeath(gameObject);
         Destroy(gameObject);
+    }
+
+    // Changes this fish's sprite color - used by upgrades or other effects that need
+    // to visually mark a fish (e.g. tinting it after consuming an upgrade)
+    public virtual void SetSpriteColor(Color color)
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.color = color;
+        }
     }
 }

@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   isPredator: 1
+  hasUpgrade: 0
   pulseSpeed: 4
   pulseDuration: 0.5
   decelDuration: 0.5
@@ -144,7 +145,7 @@ MonoBehaviour:
   maxTiltAngle: 55
   flipDuration: 0.15
   squashAmount: 1.1
-  maxHP: 25
+  maxHP: 15
   floatSpeed: 1.2
   velocitySmoothing: 2
   zigzagFrequency: 1.5
@@ -155,10 +156,6 @@ MonoBehaviour:
   eatChancePercent: 38.3
   damagePerAttack: 1
   targetCheckInterval: 1
-  bugPrefab: {fileID: 0}
-  minBugsToSpawn: 1
-  maxBugsToSpawn: 3
-  spawnScatterRadius: 0.5
 --- !u!114 &8096935529546499008
 MonoBehaviour:
   m_ObjectHideFlags: 0
