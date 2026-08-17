@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3387279276772366922}
   - component: {fileID: 1429243688356410867}
   - component: {fileID: 6488235411835472890}
-  - component: {fileID: 2591777666723081710}
+  - component: {fileID: -7925610913846980496}
   - component: {fileID: 6154835610557874348}
   - component: {fileID: 7487644527592825812}
   m_Layer: 0
-  m_Name: FeederFish
+  m_Name: GoldFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.21, y: 0.08}
   m_Size: {x: 2.58, y: 1.18}
   m_Direction: 1
---- !u!114 &2591777666723081710
+--- !u!114 &-7925610913846980496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,9 +109,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2675466926030849536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4843bfb987b3d249bd564a72041e149, type: 3}
+  m_Script: {fileID: 11500000, guid: 640a05035d6f04f4abf785d1dbdaf132, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::Goldfish
   isPredator: 0
   pulseSpeed: 3
   pulseDuration: 0.5
@@ -171,12 +171,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -528155585299737953, guid: 10518c5e51e25d845a7639e30a78bab6, type: 3}
+  m_Sprite: {fileID: -8256330342996790266, guid: 420e14ae19602a4479feeea96d219775, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.02, y: 1.59}
+  m_Size: {x: 2.3, y: 1.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -192,7 +192,7 @@ Animator:
   m_GameObject: {fileID: 2675466926030849536}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1fa6d9e831a35f40a9487d89bd9f758, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9c826b401cf3f1c46891022102f943b5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
