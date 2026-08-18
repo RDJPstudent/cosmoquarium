@@ -24,6 +24,10 @@ public class FishingMinigameController : MonoBehaviour
     // Set by FishingUpgradeManager once that script exists. Defaults to 0 (no upgrade purchased yet).
     public int lineStrengthLevel = 0;
 
+    // Fired every frame while the minigame is running, passing the indicator's current 0-1 position.
+    // FishingUIController subscribes to this to animate the timing bar.
+    public event Action<float> OnPositionUpdated;
+
     private float currentPosition;
 
     /// Starts the minigame. Calls onComplete(true) if the player clicked inside the hit zone,
@@ -42,6 +46,7 @@ public class FishingMinigameController : MonoBehaviour
         while (elapsed < minigameDuration)
         {
             currentPosition = Mathf.PingPong((Time.time - startTime) * pingPongSpeed, 1f);
+            OnPositionUpdated?.Invoke(currentPosition);
 
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
