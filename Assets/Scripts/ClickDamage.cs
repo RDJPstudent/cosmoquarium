@@ -3,16 +3,14 @@ using System.Collections;
 
 public class ClickDamage : MonoBehaviour
 {
-    public int clickDamageAmount = 1;
-
     [Header("Click Feedback")]
-    public Color flashColor = Color.white;   // color the sprite briefly flashes to
-    public float flashDuration = 0.15f;      // how long the flash lasts before fading back
+    public Color flashColor = Color.white;
+    public float flashDuration = 0.15f;
 
     protected Fish targetFish;
     protected SpriteRenderer spriteRenderer;
     protected Color originalColor;
-    protected Coroutine flashRoutine; // tracks the currently running flash, so rapid clicks don't stack weirdly
+    protected Coroutine flashRoutine;
 
     void Awake()
     {
@@ -21,7 +19,7 @@ public class ClickDamage : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            originalColor = spriteRenderer.color; // remember the sprite's normal color to restore afterward
+            originalColor = spriteRenderer.color;
         }
     }
 
@@ -29,7 +27,7 @@ public class ClickDamage : MonoBehaviour
     {
         if (targetFish != null)
         {
-            targetFish.TakeDamage(clickDamageAmount);
+            targetFish.DealClickDamageTo(targetFish);
         }
 
         PlayFlashFeedback();
@@ -39,7 +37,6 @@ public class ClickDamage : MonoBehaviour
     {
         if (spriteRenderer == null) return;
 
-        // If a flash is already in progress (rapid clicking), stop it first so they don't overlap weirdly
         if (flashRoutine != null)
         {
             StopCoroutine(flashRoutine);

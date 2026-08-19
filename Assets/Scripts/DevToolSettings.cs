@@ -1,8 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-// Attach this to any single GameObject in your scene (e.g. an empty called "DevTools").
-// Exposes checkboxes in the Inspector that control which DevTools log categories fire,
-// without needing to edit code to toggle them on/off during testing.
 public class DevToolsSettings : MonoBehaviour
 {
     [Header("Log Category Toggles")]
@@ -12,8 +10,9 @@ public class DevToolsSettings : MonoBehaviour
     public bool logEatAttempts = true;
     public bool logTargeting = true;
 
-    // Pushes the Inspector checkbox values into the static DevTools class every frame,
-    // so changes made in the Inspector during Play mode take effect immediately
+    [Header("Test - Add Upgrade")]
+    public string testUpgradeId = "your_upgrade_id";
+
     void Update()
     {
         DevTools.logCollisions = logCollisions;
@@ -21,5 +20,11 @@ public class DevToolsSettings : MonoBehaviour
         DevTools.logDeath = logDeath;
         DevTools.logEatAttempts = logEatAttempts;
         DevTools.logTargeting = logTargeting;
+
+        // New Input System equivalent of Input.GetKeyDown(KeyCode.U)
+        if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            DevTools.TestAddUpgrade(testUpgradeId);
+        }
     }
 }

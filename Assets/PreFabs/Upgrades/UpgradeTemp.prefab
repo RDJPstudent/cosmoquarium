@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e1cd46ebbca49429084a014cfc4cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Upgrade
+  upgradeId: upgrade_template
   fallGravityScale: 1
   floatSpeed: 0.5
   attractionRadius: 3

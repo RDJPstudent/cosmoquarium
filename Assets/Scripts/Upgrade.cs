@@ -1,14 +1,18 @@
 using UnityEngine;
 
-// Base class for all upgrade pickups. Falls under gravity until reaching the top wall,
-// then floats slowly downward while attracting nearby fish, passing through both walls
-// and fish physically (all movement is controlled manually). Guaranteed 100% "eat" on
-// contact with any eligible fish (no chance roll, and fish already holding an upgrade
-// are skipped). Subclasses override ApplyUpgradeEffect() to define what it actually does.
+// Base class for all upgrade pickups. If spawned above the top wall, falls under
+// gravity until reaching it, then floats slowly downward while attracting eligible
+// fish. If spawned already inside the tank, skips straight to floating. Passes
+// physically through walls and fish (all movement is controlled manually).
+// Guaranteed 100% "eat" on contact with any eligible fish (no chance roll).
+// Subclasses override ApplyUpgradeEffect() to define what it actually does.
 [RequireComponent(typeof(Rigidbody2D))]
 public class Upgrade : MonoBehaviour
 {
     protected enum UpgradeState { Falling, Floating, Resting }
+
+    [Header("Identity")]
+    public string upgradeId;
 
     [Header("Fall")]
     public float fallGravityScale = 1f;
@@ -21,19 +25,38 @@ public class Upgrade : MonoBehaviour
     public float attractionStrength = 2f;
     public bool attractPredators = false;
 
+    [Header("Eligibility")]
+    public bool requireGoldProducer = false;
+
     [Header("Pickup Feedback")]
     public GameObject sparkleEffectPrefab;
     public float sparkleLifetime = 1.5f;
-    public Color fishColorOnConsume = Color.white; // color the eating fish's sprite changes to - set per upgrade type in the Inspector
+    public Color fishColorOnConsume = Color.white;
 
     protected Rigidbody2D rb;
     protected UpgradeState currentState;
 
+    // Override to return false in a subclass that shouldn't lock the fish into
+    // "has an upgrade" state (e.g. an upgrade that clones the fish rather than
+    // permanently modifying it) - such upgrades skip the hasUpgrade check/lock entirely.
+    protected virtual bool RequiresUpgradeSlot => true;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = fallGravityScale;
-        currentState = UpgradeState.Falling;
+
+        GameObject wallTop = GameObject.Find("Wall_Top");
+
+        if (wallTop != null && transform.position.y < wallTop.transform.position.y)
+        {
+            rb.gravityScale = 0f;
+            currentState = UpgradeState.Floating;
+        }
+        else
+        {
+            rb.gravityScale = fallGravityScale;
+            currentState = UpgradeState.Falling;
+        }
     }
 
     protected virtual void Update()
@@ -56,8 +79,6 @@ public class Upgrade : MonoBehaviour
         }
     }
 
-    // Pulls eligible fish (excludes predators unless attractPredators is on,
-    // and excludes fish that already have an upgrade) toward this pickup
     protected virtual void AttractNearbyFish()
     {
         Fish[] allFish = FindObjectsByType<Fish>(FindObjectsSortMode.None);
@@ -65,7 +86,8 @@ public class Upgrade : MonoBehaviour
         foreach (Fish fish in allFish)
         {
             if (!attractPredators && fish.isPredator) continue;
-            if (fish.hasUpgrade) continue;
+            if (RequiresUpgradeSlot && fish.hasUpgrade) continue;
+            if (requireGoldProducer && !fish.isGoldProducer) continue;
 
             float distance = Vector2.Distance(fish.transform.position, transform.position);
             if (distance <= attractionRadius)
@@ -76,8 +98,6 @@ public class Upgrade : MonoBehaviour
         }
     }
 
-    // Requires this object's Collider2D to have "Is Trigger" checked, so the upgrade
-    // passes physically through walls and fish rather than bouncing/stopping on contact
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         switch (currentState)
@@ -101,9 +121,23 @@ public class Upgrade : MonoBehaviour
 
         Fish hitFish = other.gameObject.GetComponent<Fish>();
 
-        if (hitFish != null && (attractPredators || !hitFish.isPredator) && !hitFish.hasUpgrade)
+        bool eligibleForUpgradeSlot = hitFish != null && (!RequiresUpgradeSlot || !hitFish.hasUpgrade);
+
+        if (hitFish != null
+            && (attractPredators || !hitFish.isPredator)
+            && eligibleForUpgradeSlot
+            && (!requireGoldProducer || hitFish.isGoldProducer))
         {
-            hitFish.hasUpgrade = true;
+            if (RequiresUpgradeSlot)
+            {
+                hitFish.hasUpgrade = true;
+            }
+
+            if (!string.IsNullOrEmpty(upgradeId))
+            {
+                GameManager.RemoveUpgrade(upgradeId);
+            }
+
             SpawnSparkle(hitFish);
             ApplyUpgradeEffect(hitFish);
             Destroy(gameObject);
@@ -119,9 +153,6 @@ public class Upgrade : MonoBehaviour
         Destroy(sparkle, sparkleLifetime);
     }
 
-    // Override in a subclass to define what this specific upgrade actually does.
-    // Base behavior here tints the fish - subclasses can call base.ApplyUpgradeEffect(eater)
-    // to keep the color change, then add their own additional effect on top.
     protected virtual void ApplyUpgradeEffect(Fish eater)
     {
         eater.SetSpriteColor(fishColorOnConsume);

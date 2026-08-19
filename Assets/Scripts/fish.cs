@@ -3,47 +3,52 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Fish : MonoBehaviour
 {
-    // The three phases of one "pulse cycle"
     protected enum PulseState { Pulsing, Decelerating, Resting }
 
     [Header("Faction")]
-    public bool isPredator = false; // true for Alien/Bug/Mother/Burster (any hunter) - predators exclude each other as targets
-    public bool hasUpgrade = false; // true once this fish has collected an upgrade - limits fish to holding 1 at a time
+    public bool isPredator = false;
+    public bool hasUpgrade = false;
+    public bool isGoldProducer = false;
+    public bool isUntargetable = false;
 
     [Header("Spawn Economy")]
-    public float spawnValue = 10f; // how much of the night's spawn budget this predator "costs" - set per prefab in the Inspector
+    public float spawnValue = 10f;
+
+    [Header("Click Damage")]
+    public int clickDamageAmount = 1;  // base damage dealt per hit - shared by clicking AND shooting
+    public int clickDamageHits = 1;    // number of damage instances per hit - doubled by Double Click upgrade
 
     [Header("Pulse Movement")]
-    public float pulseSpeed = 4f;        // top speed reached at the end of the pulse burst
-    public float pulseDuration = 0.5f;   // time spent accelerating forward
-    public float decelDuration = 0.5f;   // time spent slowing to a stop after the pulse
-    public float restDuration = 0.3f;    // brief pause before picking a new direction and pulsing again
+    public float pulseSpeed = 4f;
+    public float pulseDuration = 0.5f;
+    public float decelDuration = 0.5f;
+    public float restDuration = 0.3f;
 
     [Header("Rotation")]
-    public float rotationSpeed = 720f;   // degrees per second the fish can turn to face its direction
-    public float maxTiltAngle = 55f;     // how far the fish can tilt up/down from horizontal (its "neutral" facing)
+    public float rotationSpeed = 720f;
+    public float maxTiltAngle = 55f;
 
     [Header("Turn Flip")]
-    public float flipDuration = 0.15f;   // how long the whole turn-flip animation takes
-    public float squashAmount = 0.4f;    // how thin (width-wise) the fish gets at the peak of the turn
+    public float flipDuration = 0.15f;
+    public float squashAmount = 0.4f;
 
     [Header("Health")]
-    public int maxHP = 2;                // total hit points before this fish dies
-    protected int currentHP;             // current hit points, set to maxHP on spawn
+    public int maxHP = 2;
+    protected int currentHP;
 
     protected Rigidbody2D rb;
-    protected Vector2 targetDirection;   // the direction this pulse is moving toward (world space, already tilt-clamped)
+    protected Vector2 targetDirection;
     protected PulseState currentState;
     protected float stateTimer;
 
-    protected float baseScaleX;          // original unsigned scale.x, captured once
-    protected float baseScaleY;          // original unsigned scale.y, captured once
+    protected float baseScaleX;
+    protected float baseScaleY;
 
-    protected bool isFacingRight;        // which way the fish is currently settled facing
-    protected bool isFlipping;           // true while a turn animation is in progress
-    protected bool pendingFacingRight;   // the facing direction we're flipping TOWARD
-    protected float flipTimer;           // counts up during the flip animation
-    protected bool hasSwappedThisFlip;   // ensures the x-sign swap only happens once per flip
+    protected bool isFacingRight;
+    protected bool isFlipping;
+    protected bool pendingFacingRight;
+    protected float flipTimer;
+    protected bool hasSwappedThisFlip;
 
     protected virtual void Awake()
     {
@@ -52,7 +57,6 @@ public class Fish : MonoBehaviour
         baseScaleX = Mathf.Abs(transform.localScale.x);
         baseScaleY = Mathf.Abs(transform.localScale.y);
 
-        // Start facing whichever way the fish's initial scale suggests
         isFacingRight = transform.localScale.x >= 0f;
 
         currentHP = maxHP;
@@ -61,14 +65,13 @@ public class Fish : MonoBehaviour
     protected virtual void Start()
     {
         PickNewDirection();
-        EnterState(PulseState.Pulsing); // start the cycle immediately
+        EnterState(PulseState.Pulsing);
     }
 
     protected virtual void Update()
     {
         stateTimer += Time.deltaTime;
 
-        // Check whether it's time to move to the next phase of the pulse cycle
         switch (currentState)
         {
             case PulseState.Pulsing:
@@ -244,14 +247,32 @@ public class Fish : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Changes this fish's sprite color - used by upgrades or other effects that need
-    // to visually mark a fish (e.g. tinting it after consuming an upgrade)
     public virtual void SetSpriteColor(Color color)
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
             sr.color = color;
+        }
+    }
+
+    public virtual void DoubleMaxHP()
+    {
+        maxHP *= 2;
+        currentHP *= 2;
+    }
+
+    // Deals this fish's own click-damage profile (amount x hits) to a target Fish.
+    // Used both when this fish is clicked, and when a shooting upgrade fires this
+    // fish's shots at a predator - same stats drive both, so Double Click and any
+    // future damage-boosting upgrades apply equally to clicking and shooting.
+    public virtual void DealClickDamageTo(Fish target, GameObject attacker = null)
+    {
+        if (target == null) return;
+
+        for (int i = 0; i < clickDamageHits; i++)
+        {
+            target.TakeDamage(clickDamageAmount, attacker);
         }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 // checkboxes in the Inspector; this class just reads those static toggle values.
 public static class DevTools
 {
-    // Per-category toggles - controlled via DevToolsSettings component in the scene
     public static bool logCollisions = true;
     public static bool logDamage = true;
     public static bool logDeath = true;
@@ -37,17 +36,29 @@ public static class DevTools
         Debug.Log($"[EatAttempt] {attacker.name} -> {target.name}: rolled {roll:F1} vs {chance}% chance - {result}");
     }
 
-    // New: logs when an alien picks up a new target
     public static void LogTargetAcquired(GameObject hunter, GameObject target)
     {
         if (!logTargeting) return;
         Debug.Log($"[Targeting] {hunter.name} acquired target: {target.name}");
     }
 
-    // New: logs when an alien's target becomes unavailable (eaten, destroyed, lost track of)
     public static void LogTargetLost(GameObject hunter, string previousTargetName)
     {
         if (!logTargeting) return;
         Debug.Log($"[Targeting] {hunter.name} lost target: {previousTargetName}");
+    }
+
+    // Test helper - adds an upgrade to inventory and logs it, for verifying
+    // InventoryBar/InventorySlot behavior before the Shop scene exists.
+    public static void TestAddUpgrade(string upgradeId)
+    {
+        if (string.IsNullOrEmpty(upgradeId))
+        {
+            Debug.LogWarning("[DevTools] TestAddUpgrade called with an empty upgradeId.");
+            return;
+        }
+
+        GameManager.AddUpgrade(upgradeId);
+        Debug.Log($"[DevTools] Test-added upgrade '{upgradeId}' via debug key.");
     }
 }
