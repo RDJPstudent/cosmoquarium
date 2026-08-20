@@ -1973,7 +1973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903a058f01e0a2940abef3e54ede1a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: SampleScene
+  gameSceneName: Shop
   mainPanel: {fileID: 4323135296179320858}
   settingsPanel: {fileID: 6784511302414976954}
   resolutionDropdown: {fileID: 4884460703157517623}

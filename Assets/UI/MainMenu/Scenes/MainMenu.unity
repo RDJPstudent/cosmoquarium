@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &243047135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6784511302414976954, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
-  m_PrefabInstance: {fileID: 7340405514077970491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &437936913
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
   m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
@@ -198,21 +193,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
   m_FirstSelected: {fileID: 7340405514077970492}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1 &645342994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4507770724974222871, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
-  m_PrefabInstance: {fileID: 7340405514077970491}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &796337534 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4323135296179320858, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
-  m_PrefabInstance: {fileID: 7340405514077970491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476281951
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +227,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -404,7 +389,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -421,7 +406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
@@ -505,8 +490,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595221355823067554, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7340405514077970504}
+      value:
+      objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 595221355823067554, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
@@ -563,6 +548,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_HorizontalOverflow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1591847982091752485, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value:
+      objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 1756622344060895319, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 48
@@ -689,8 +678,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4597343517286493020, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7340405514077970504}
+      value:
+      objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 4597343517286493020, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ApplySettings
@@ -705,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_Template
-      value: 
+      value:
       objectReference: {fileID: 1598178196}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_Enabled
@@ -713,11 +702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: resolutionDropdown
-      value: 
+      value:
       objectReference: {fileID: 7340405514077970495}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: displayModeDropdown
-      value: 
+      value:
       objectReference: {fileID: 7340405514077970494}
     - target: {fileID: 5450059332480662160, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_ShowMaskGraphic
@@ -725,11 +714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5699332647901114300, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 645342994}
+      value:
+      objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 5699332647901114300, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: CloseSettings
       objectReference: {fileID: 0}
     - target: {fileID: 7218000421406221058, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -737,8 +726,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7218000421406221058, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7340405514077970504}
+      value:
+      objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 7218000421406221058, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenSettings
@@ -759,10 +748,7 @@ PrefabInstance:
     - {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4507770724974222871, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7340405514077970504}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
 --- !u!1 &7340405514077970492 stripped
 GameObject:
@@ -783,7 +769,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Dropdown
 --- !u!114 &7340405514077970495 stripped
 MonoBehaviour:
@@ -794,25 +780,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Dropdown
---- !u!114 &7340405514077970504
+--- !u!114 &7340405514077970505 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1154266621097525558, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+  m_PrefabInstance: {fileID: 7340405514077970491}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645342994}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 903a058f01e0a2940abef3e54ede1a5f, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: GameScene
-  mainPanel: {fileID: 796337534}
-  settingsPanel: {fileID: 243047135}
-  resolutionDropdown: {fileID: 7340405514077970495}
-  displayModeDropdown: {fileID: 7340405514077970494}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
