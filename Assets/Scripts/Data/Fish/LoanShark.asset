@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   speciesName: 
   sprite: {fileID: 0}
-  abilityType: 0
-  abilityValue: 0
+  abilityType: 1
+  abilityValue: 5
   maxHP: 10
   catchWeight: 1
