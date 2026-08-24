@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
   m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
   m_FirstSelected: {fileID: 7340405514077970492}
   m_sendNavigationEvents: 1
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595221355823067554, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 595221355823067554, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -550,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1591847982091752485, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 1756622344060895319, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_FontData.m_MaxSize
@@ -678,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4597343517286493020, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 4597343517286493020, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -694,27 +694,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_Template
-      value:
+      value: 
       objectReference: {fileID: 1598178196}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7340405514077970505}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnResolutionSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884460703157517623, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: resolutionDropdown
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970495}
     - target: {fileID: 5127531350936712094, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: displayModeDropdown
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970494}
+    - target: {fileID: 5143851808739924084, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143851808739924084, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7340405514077970505}
+    - target: {fileID: 5143851808739924084, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDisplayModeSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 5450059332480662160, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_ShowMaskGraphic
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5699332647901114300, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 5699332647901114300, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -726,7 +762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7218000421406221058, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 7340405514077970505}
     - target: {fileID: 7218000421406221058, guid: 825db31b04324fe49bd6a2af781cc3b2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -769,7 +805,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Dropdown
 --- !u!114 &7340405514077970495 stripped
 MonoBehaviour:
@@ -780,7 +816,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Dropdown
 --- !u!114 &7340405514077970505 stripped
 MonoBehaviour:
@@ -791,7 +827,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 903a058f01e0a2940abef3e54ede1a5f, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
